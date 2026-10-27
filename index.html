@@ -25,7 +25,6 @@
 <link rel="preload" as="image" href="img/hero-instalacao-energia-solar-mobile.webp" media="(max-width:700px)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;1,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- ===================== GTM ===================== -->
@@ -400,31 +399,8 @@ footer a:hover{color:var(--amarelo)}
 
 
 
-/* Minimapa */
-.estado{display:block;width:100%;text-align:left;font:inherit;cursor:pointer;transition:border-color .2s,box-shadow .2s,transform .2s}
-.estado:hover{border-color:var(--azul)}
-.estado.ativo{border-color:var(--amarelo);box-shadow:0 8px 24px rgba(28,31,110,.08)}
+/* Estados */
 .estado h3 em{margin-left:auto;font-style:normal;font-size:.75rem;font-weight:600;color:var(--cinza)}
-.minimapa-box{background:#fff;border:1px solid var(--linha);border-radius:var(--raio);overflow:hidden;position:sticky;top:96px}
-.minimapa{height:460px;background:#EEF1F7}
-.mm-legenda{display:flex;flex-wrap:wrap;align-items:center;gap:16px;padding:14px 18px;font-size:.82rem;font-weight:600;color:var(--cinza);border-top:1px solid var(--linha)}
-.mm-legenda span{display:flex;align-items:center;gap:7px}
-.mm-legenda button{margin-left:auto;font:inherit;font-weight:700;color:var(--azul);background:none;border:0;cursor:pointer}
-.mm-pin,.mm-sede{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--amarelo);border:2.5px solid var(--marinho)}
-.mm-sede{background:var(--marinho);border-color:var(--amarelo);width:14px;height:14px}
-.pin-av{width:16px;height:16px;border-radius:50%;background:var(--amarelo);border:3px solid var(--marinho);box-shadow:0 2px 6px rgba(0,0,0,.3);animation:pinpop .5s cubic-bezier(.3,1.6,.5,1) both}
-.pin-sede{width:22px;height:22px;background:var(--marinho);border-color:var(--amarelo);position:relative}
-.pin-sede:after{content:"";position:absolute;inset:-9px;border-radius:50%;border:2px solid var(--marinho);opacity:.5;animation:radar 2s ease-out infinite}
-@keyframes pinpop{from{transform:scale(0)}to{transform:scale(1)}}
-@keyframes radar{from{transform:scale(.6);opacity:.7}to{transform:scale(1.8);opacity:0}}
-.leaflet-popup-content{font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-weight:700;color:var(--marinho);margin:10px 14px}
-.leaflet-popup-content small{display:block;font-weight:500;color:var(--cinza)}
-.leaflet-container a.leaflet-popup-close-button{display:none}
-.contato-row{display:grid;grid-template-columns:1.1fr .9fr;margin-top:40px}
-.contato-row .mapa{aspect-ratio:auto;min-height:280px}
-.contato-row .contato-in{padding:32px;align-self:center}
-@media (max-width:1000px){.minimapa-box{position:static}.contato-row{grid-template-columns:1fr}.contato-row .mapa{min-height:240px}}
-@media (max-width:700px){.minimapa{height:360px}}
 
 /* ===== Motion ===== */
 .hero-content>*,.stats{opacity:0;transform:translateY(26px);animation:sobe .9s cubic-bezier(.2,.7,.2,1) forwards}
@@ -787,25 +763,18 @@ footer a:hover{color:var(--amarelo)}
 
 <!-- REGIÕES + CONTATO -->
 <section id="regioes" class="bg-off" aria-labelledby="reg-tit">
-  <div class="wrap">
-    <div class="reg-grid">
-      <div>
-        <span class="rv eyebrow">Onde atuamos</span>
-        <h2 id="reg-tit" class="rv" style="--d:.08s">Projetos entregues <em>em 3 estados</em></h2>
-        <p class="lead rv" style="--d:.16s">Cada ponto no mapa é uma cidade onde a Avance já instalou energia solar. Toque em um estado para ver as instalações.</p>
-        <div class="estados">
-        <button type="button" class="rv estado" data-uf="SP"><h3><span>SP</span>São Paulo<em>12 cidades</em></h3><p>Ribeirão Preto, Sertãozinho, Franca, Jaboticabal, Batatais, Brodowski, Cravinhos, Dumont, Guariba, Pitangueiras, Araraquara, Caraguatatuba e região</p></button>
-        <button type="button" class="rv estado" data-uf="MG"><h3><span>MG</span>Minas Gerais<em>2 cidades</em></h3><p>São Roque de Minas, Córrego do Bom Jesus e região</p></button>
-        <button type="button" class="rv estado" data-uf="RJ"><h3><span>RJ</span>Rio de Janeiro<em>4 cidades</em></h3><p>Arraial do Cabo, Cabo Frio, São Pedro da Aldeia, Vargem Pequena (Rio de Janeiro) e região</p></button>
-        </div>
-      </div>
-      <div class="rv dir minimapa-box">
-        <div id="minimapa" class="minimapa" role="region" aria-label="Mapa das cidades com instalações da Avance"></div>
-        <div class="mm-legenda"><span><i class="mm-sede"></i>Sede · Ribeirão Preto</span><span><i class="mm-pin"></i>Cidades com instalação</span><button type="button" id="mm-todos">Ver todos</button></div>
+  <div class="wrap reg-grid">
+    <div>
+      <span class="rv eyebrow">Onde atuamos</span>
+      <h2 id="reg-tit" class="rv" style="--d:.08s">Projetos entregues <em>em 3 estados</em></h2>
+      <p class="lead rv" style="--d:.16s">A Avance leva energia solar para residências e comércios em diferentes regiões. Fale com a gente para confirmar o atendimento na sua cidade.</p>
+      <div class="estados">
+        <div class="rv estado"><h3><span>SP</span>São Paulo<em>12 cidades</em></h3><p>Ribeirão Preto, Sertãozinho, Franca, Jaboticabal, Batatais, Brodowski, Cravinhos, Dumont, Guariba, Pitangueiras, Araraquara, Caraguatatuba e região</p></div>
+        <div class="rv estado"><h3><span>MG</span>Minas Gerais<em>2 cidades</em></h3><p>São Roque de Minas, Córrego do Bom Jesus e região</p></div>
+        <div class="rv estado"><h3><span>RJ</span>Rio de Janeiro<em>4 cidades</em></h3><p>Arraial do Cabo, Cabo Frio, São Pedro da Aldeia, Vargem Pequena (Rio de Janeiro) e região</p></div>
       </div>
     </div>
-
-    <div class="rv contato-box contato-row">
+    <div class="rv dir contato-box">
       <div class="mapa">
         <iframe title="Mapa da sede da Avance Energia e Climatização" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Avance+Energia+e+Climatiza%C3%A7%C3%A3o,+R.+Cerqueira+C%C3%A9sar,+653,+Ribeir%C3%A3o+Preto+-+SP&output=embed"></iframe>
       </div>
@@ -939,46 +908,6 @@ footer a:hover{color:var(--amarelo)}
     });
   })();
 
-  // Minimapa de instalações (Leaflet carregado só quando a seção aparece)
-  (function(){
-    var CIDADES=[{"c": "Ribeirão Preto", "uf": "SP", "lat": -21.1775, "lng": -47.8103}, {"c": "Sertãozinho", "uf": "SP", "lat": -21.1378, "lng": -47.9903}, {"c": "Franca", "uf": "SP", "lat": -20.5386, "lng": -47.4008}, {"c": "Jaboticabal", "uf": "SP", "lat": -21.255, "lng": -48.3225}, {"c": "Batatais", "uf": "SP", "lat": -20.8911, "lng": -47.5853}, {"c": "Brodowski", "uf": "SP", "lat": -20.9917, "lng": -47.6594}, {"c": "Cravinhos", "uf": "SP", "lat": -21.34, "lng": -47.7297}, {"c": "Dumont", "uf": "SP", "lat": -21.2364, "lng": -47.9731}, {"c": "Guariba", "uf": "SP", "lat": -21.36, "lng": -48.2286}, {"c": "Pitangueiras", "uf": "SP", "lat": -21.0094, "lng": -48.2219}, {"c": "Araraquara", "uf": "SP", "lat": -21.7845, "lng": -48.178}, {"c": "Caraguatatuba", "uf": "SP", "lat": -23.6203, "lng": -45.4131}, {"c": "São Roque de Minas", "uf": "MG", "lat": -20.2489, "lng": -46.3667}, {"c": "Córrego do Bom Jesus", "uf": "MG", "lat": -22.6283, "lng": -46.025}, {"c": "Arraial do Cabo", "uf": "RJ", "lat": -22.9661, "lng": -42.0278}, {"c": "Cabo Frio", "uf": "RJ", "lat": -22.8894, "lng": -42.0286}, {"c": "São Pedro da Aldeia", "uf": "RJ", "lat": -22.8392, "lng": -42.1022}, {"c": "Vargem Pequena (Rio de Janeiro)", "uf": "RJ", "lat": -22.99, "lng": -43.46}];
-    var el=document.getElementById("minimapa"); if(!el) return;
-    var mapa=null, camadas={}, todos=[];
-    function bounds(lista){return L.latLngBounds(lista.map(function(c){return [c.lat,c.lng]}))}
-    function iniciar(){
-      mapa=L.map(el,{scrollWheelZoom:false,zoomControl:true,attributionControl:true});
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",{maxZoom:18,attribution:'&copy; OpenStreetMap &copy; CARTO'}).addTo(mapa);
-      CIDADES.forEach(function(c,i){
-        var sede=c.c==="Ribeirão Preto";
-        var ic=L.divIcon({className:"",html:'<div class="pin-av'+(sede?' pin-sede':'')+'" style="animation-delay:'+(i*0.06)+'s"></div>',iconSize:sede?[22,22]:[16,16],iconAnchor:sede?[11,11]:[8,8]});
-        var m=L.marker([c.lat,c.lng],{icon:ic,zIndexOffset:sede?1000:0,title:c.c}).addTo(mapa)
-          .bindPopup(c.c+"<small>"+(sede?"Sede da Avance · ":"")+c.uf+"</small>");
-        (camadas[c.uf]=camadas[c.uf]||[]).push(c); todos.push(c);
-      });
-      mapa.fitBounds(bounds(todos),{padding:[30,30]});
-    }
-    function verUF(uf,btn){
-      if(!mapa) return;
-      document.querySelectorAll(".estado").forEach(function(b){b.classList.toggle("ativo",b===btn)});
-      var l=camadas[uf]; mapa.flyToBounds(bounds(l),{padding:[50,50],maxZoom:l.length>1?9:10,duration:1});
-      if(window.innerWidth<1000) el.scrollIntoView({behavior:"smooth",block:"center"});
-    }
-    document.querySelectorAll(".estado[data-uf]").forEach(function(b){b.addEventListener("click",function(){verUF(b.dataset.uf,b)})});
-    document.getElementById("mm-todos").addEventListener("click",function(){
-      if(!mapa) return; document.querySelectorAll(".estado").forEach(function(b){b.classList.remove("ativo")});
-      mapa.flyToBounds(bounds(todos),{padding:[30,30],duration:1});
-    });
-    function carregar(){
-      if(window.L){iniciar();return;}
-      var sc=document.createElement("script");
-      sc.src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js";
-      sc.onload=iniciar; document.head.appendChild(sc);
-    }
-    if("IntersectionObserver" in window){
-      var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){io.disconnect();carregar();}},{rootMargin:"300px"});
-      io.observe(el);
-    } else carregar();
-  })();
   document.getElementById("ano").textContent = new Date().getFullYear();
 })();
 </script>
